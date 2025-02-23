@@ -8,52 +8,72 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            background-color: #121212;
-            color: #ffffff;
+            background-color: #000000;
+            color: #adadae;
             margin: 20px;
         }
+
+        .logo-container {
+            margin-bottom: 20px;
+        }
+
+        .logo-container img {
+            max-width: 575px;
+            height: auto;
+        }
+
         input, button {
             font-size: 16px;
             margin: 10px;
-            padding: 10px;
+            padding: 12px;
             width: 80%;
             max-width: 400px;
             border: none;
             border-radius: 5px;
         }
+
         input {
-            background-color: #333333;
+            background-color: #3c3c44;
             color: #ffffff;
         }
+
         .button-container {
             margin-top: 20px;
         }
+
         .send-button {
             display: block;
             margin: 10px auto;
-            padding: 10px;
+            padding: 12px;
             font-size: 18px;
             cursor: pointer;
-            background-color: #444444;
-            color: white;
+            background: linear-gradient(45deg, #3c3c44, #656565);
+            color: silver;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             width: 80%;
             max-width: 400px;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
         }
-        .send-button:hover {
-            background-color: #666666;
+
+        .send-button:active {
+            box-shadow: 0 0 15px rgba(0, 123, 255, 1);
         }
+
         .send-button.sent {
-            background-color: #28a745;
+            background: #28a745;
             cursor: default;
         }
     </style>
 </head>
 <body>
 
-    <h2>Send Links</h2>
+    <div class="logo-container">
+        <img src="https://raw.githubusercontent.com/joshuapair/ARS-Full-Logo/refs/heads/main/Screen%20Shot%202025-02-23%20at%201.43.19%20PM.png" alt="Company Logo">
+    </div>
+
+    <h2>Link Assistant</h2>
 
     <input type="text" id="recipient" placeholder="Enter email or phone number">
 
@@ -78,6 +98,9 @@
         </button>
         <button class="send-button" onclick="sendLink(this, 'SAP Release of Information', 'https://addictionrecoverysolutions.na3.documents.adobe.com/public/esignWidget?wid=CBFCIBAA3AAABLblqZhAKUBWQ5se1ynRPCXnLN94refn45tow_IC78F_yQOepO54Rp-YDd4mOeTH1NFE1N1A*')">
             Send SAP Release of Information
+        </button>
+        <button class="send-button" onclick="sendLink(this, 'SAP Statement of Understanding', 'https://addictionrecoverysolutions.na3.documents.adobe.com/public/esignWidget?wid=CBFCIBAA3AAABLblqZhAWN5sdCD7-1te6Ji7zS1iQ75bePoy6tsZf8_CCvKJxD4POU8Jlb-ojYVkyQAhpXS0*')">
+            Send SAP Statement of Understanding
         </button>
         <button class="send-button" onclick="sendLink(this, 'Screening Intake Form', 'https://addictionrecoverysolutions.na3.documents.adobe.com/public/esignWidget?wid=CBFCIBAA3AAABLblqZhBIYuZSHaXgAhrJhQyd_2c4Uhziluf_YHf4sXx1eS9Sj3WRE79BBRNWNloNKv1D9HM*')">
             Send Screening Intake Form
