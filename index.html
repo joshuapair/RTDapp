@@ -70,7 +70,7 @@
 <body>
 
     <div class="logo-container">
-        <img src="https://raw.githubusercontent.com/joshuapair/ARS-Full-Logo/refs/heads/main/Screen%20Shot%202025-02-23%20at%201.43.19%20PM.png" alt="Company Logo">
+        <img src="https://raw.githubusercontent.com/joshuapair/ARS-Full-Logo/main/Screen%20Shot%202025-02-23%20at%201.43.19%20PM.png" alt="Company Logo">
     </div>
 
     <h2>Link Assistant</h2>
@@ -105,6 +105,22 @@
         <button class="send-button" onclick="sendLink(this, 'Screening Intake Form', 'https://addictionrecoverysolutions.na3.documents.adobe.com/public/esignWidget?wid=CBFCIBAA3AAABLblqZhBIYuZSHaXgAhrJhQyd_2c4Uhziluf_YHf4sXx1eS9Sj3WRE79BBRNWNloNKv1D9HM*')">
             Send Screening Intake Form
         </button>
+
+        <!-- FMCSA Buttons -->
+        <button class="send-button" onclick="sendLink(this, 'Registration Instructions (Employer without Portal)', 'https://clearinghouse.fmcsa.dot.gov/Resource/Index/Registration-Instructions-Employer-without-Portal')">
+            Send Registration Instructions (Employer without Portal)
+        </button>
+        <button class="send-button" onclick="sendLink(this, 'Designate SAP Guide', 'https://clearinghouse.fmcsa.dot.gov/Resource/Index/Designate-SAP')">
+            Send Designate SAP Guide
+        </button>
+        <button class="send-button" onclick="sendLink(this, 'RTD Infographic', 'https://clearinghouse.fmcsa.dot.gov/Resource/Index/RTD-Infographic')">
+            Send RTD Infographic
+        </button>
+
+        <!-- Step 5 Instructions -->
+        <button class="send-button" onclick="sendLink(this, `Clearinghouse Setup for Owner-Operators (Step 5)\n\n1. Use a New Email:\nStart with a new email not used in the Clearinghouse before.\n\n2. Register as Employer & Driver:\nGo to the Clearinghouse and register.\nSelect Employer, then check Yes when asked if you’re also a driver.\n\n3. Company Name:\nEnter your first and last name as your company name (e.g., John Doe).\n\n4. TPA Selection:\nDesignate Longview Screening Solutions as your Third-Party Administrator.\n\n5. Finish Setup:\nComplete the steps and confirm your roles and TPA are listed correctly.`, 'https://clearinghouse.fmcsa.dot.gov/Resource/Index/Registration-Instructions-Employer-without-Portal')">
+            Send Clearinghouse Step 5 Setup Instructions
+        </button>
     </div>
 
     <script>
@@ -114,7 +130,7 @@
                 alert("Please enter an email or phone number.");
                 return;
             }
-            let message = `${description}: ${link}`;
+            let message = `${description}\n\n${link}`;
             if (recipient.includes("@")) {
                 window.open(`mailto:${recipient}?subject=${encodeURIComponent(description)}&body=${encodeURIComponent(message)}`);
             } else {
