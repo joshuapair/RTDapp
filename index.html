@@ -111,6 +111,39 @@
   <div class="count" id="selectedCount">Selected: 0</div>
 
   <div class="button-container">
+
+    <!-- CONTACT INFO -->
+    <button class="send-button"
+      onclick="toggleSelect(this)"
+      data-title="Contact Information"
+      data-link=""
+      data-body="Joshua Pair, M.Ed., LCDC
+
+Phone / Text: 903-445-8953
+
+Email (Counseling & SAP):
+joshuapair@addictionrecoverysolutions.org
+
+Email (Screening & TPA):
+info@longviewscreeningsolutions.org">
+      Contact Information
+    </button>
+
+    <!-- WEBSITES -->
+    <button class="send-button"
+      onclick="toggleSelect(this)"
+      data-title="Websites"
+      data-link=""
+      data-body="Websites:
+
+Addiction Recovery Solutions:
+https://addictionrecoverysolutions.org
+
+Longview Screening Solutions:
+https://longviewscreeningsolutions.org">
+      Websites
+    </button>
+
     <!-- NOTE: These are now SELECT buttons (no sending on click) -->
     <button class="send-button"
       onclick="toggleSelect(this)"
@@ -175,8 +208,6 @@
       Screening Intake Form
     </button>
 
-  
-
     <button class="send-button"
       onclick="toggleSelect(this)"
       data-title="Designate SAP Guide"
@@ -200,7 +231,7 @@
 
 I need the follow up report without the testing plan from your SAP stating if you need a drug test, alcohol test, or both. Please send to my email.
 
-Info@longviewscreeningsolutions.org
+info@longviewscreeningsolutions.org
 
 1. Use a New Email:
 Start with a new email not used in the Clearinghouse before.
@@ -242,27 +273,31 @@ Complete the steps and confirm your roles and TPA are listed correctly.">
       if (selectedButtons.length === 0) return null;
 
       const lines = [];
-      lines.push("Here are the requested links/info:");
+      lines.push("Links and information:");
       lines.push("");
 
       selectedButtons.forEach((btn, idx) => {
         const title = btn.getAttribute("data-title") || `Item ${idx + 1}`;
-        const link = btn.getAttribute("data-link") || "";
+        const link = (btn.getAttribute("data-link") || "").trim();
         const customBody = btn.getAttribute("data-body"); // optional
 
         lines.push(`— ${title}`);
+
         if (customBody && customBody.trim().length > 0) {
           lines.push(customBody.trim());
-          lines.push("");
-          lines.push(`Link: ${link}`);
+          if (link) {
+            lines.push("");
+            lines.push(`Link: ${link}`);
+          }
         } else {
-          lines.push(link);
+          if (link) lines.push(link);
         }
+
         lines.push(""); // blank line between items
       });
 
       return {
-        subject: `Links (${selectedButtons.length})`,
+        subject: "Information",
         body: lines.join("\n")
       };
     }
