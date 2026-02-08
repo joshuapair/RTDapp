@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Link Sender App</title>
-
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -34,6 +33,7 @@
 
     .button-container { margin-top: 20px; }
 
+    /* Item buttons (selectable) */
     .send-button {
       display: block;
       margin: 10px auto;
@@ -42,6 +42,7 @@
       cursor: pointer;
       background: linear-gradient(45deg, #3c3c44, #656565);
       color: silver;
+      border: none;
       border-radius: 8px;
       width: 80%;
       max-width: 400px;
@@ -49,12 +50,18 @@
       box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
     }
 
+    .send-button:active {
+      box-shadow: 0 0 15px rgba(0, 123, 255, 1);
+    }
+
+    /* Selected state */
     .send-button.selected {
       outline: 2px solid rgba(0, 123, 255, 0.9);
       box-shadow: 0 0 18px rgba(0, 123, 255, 0.95);
       transform: translateY(-1px);
     }
 
+    /* Action bar buttons */
     .action-button {
       display: inline-block;
       margin: 10px auto;
@@ -63,10 +70,16 @@
       cursor: pointer;
       background: linear-gradient(45deg, #1f1f25, #3a3a44);
       color: #ffffff;
+      border: none;
       border-radius: 8px;
       width: 80%;
       max-width: 400px;
+      transition: all 0.2s;
       box-shadow: 0 0 8px rgba(40, 167, 69, 0.35);
+    }
+
+    .action-button:active {
+      box-shadow: 0 0 15px rgba(40, 167, 69, 0.85);
     }
 
     .action-button.secondary {
@@ -84,7 +97,6 @@
 </head>
 
 <body>
-
   <div class="logo-container">
     <img src="https://raw.githubusercontent.com/joshuapair/ARS-Full-Logo/main/Screen%20Shot%202025-02-23%20at%201.43.19%20PM.png" alt="Company Logo">
   </div>
@@ -93,126 +105,194 @@
 
   <input type="text" id="recipient" placeholder="Enter email or phone number">
 
+  <!-- Action Bar -->
   <button class="action-button" onclick="sendSelected()">Send Selected</button>
   <button class="action-button secondary" onclick="clearSelection()">Clear Selection</button>
   <div class="count" id="selectedCount">Selected: 0</div>
 
   <div class="button-container">
-
-    <!-- CONTACT INFO -->
+    <!-- NOTE: These are now SELECT buttons (no sending on click) -->
     <button class="send-button"
       onclick="toggleSelect(this)"
-      data-title="Contact Information"
-      data-body="Joshua Pair, M.Ed., LCDC
-
-Phone / Text:
-903-445-8953
-
-Email (Counseling & SAP):
-joshuapair@addictionrecoverysolutions.org
-
-Email (Screening & TPA):
-info@longviewscreeningsolutions.org">
-      Contact Information
-    </button>
-
-    <!-- WEBSITES -->
-    <button class="send-button"
-      onclick="toggleSelect(this)"
-      data-title="Websites"
-      data-body="Websites:
-
-Addiction Recovery Solutions
-https://addictionrecoverysolutions.org
-
-Longview Screening Solutions
-https://longviewscreeningsolutions.org">
-      Websites
-    </button>
-
-    <!-- PAYMENTS / FORMS -->
-    <button class="send-button" onclick="toggleSelect(this)"
       data-title="SAP Evaluation ($500)"
       data-link="https://connect.intuit.com/pay/AddictionRecoverySolutions/scs-v1-3d91cc9c7a074cd2830f429873aab489d359939d998d4e7c8cb6c1adc504954c1b8a1a99bd3b476580ef04bc27d5f21e?locale=EN_US">
       SAP Evaluation ($500)
     </button>
 
-    <button class="send-button" onclick="toggleSelect(this)"
+    <button class="send-button"
+      onclick="toggleSelect(this)"
       data-title="NON-DOT SAP Evaluation ($250)"
       data-link="https://connect.intuit.com/pay/AddictionRecoverySolutions/scs-v1-99053bf9e4c943f5937f97b4ef9d9d42730e1749c5b74eb8a2d282b8b0659c77cbdd6d49bfa449f097362c4dda06ae47?locale=EN_US">
       NON-DOT SAP Evaluation ($250)
     </button>
 
-    <button class="send-button" onclick="toggleSelect(this)"
+    <button class="send-button"
+      onclick="toggleSelect(this)"
+      data-title="NON-DOT Drug Test ($100)"
+      data-link="https://connect.intuit.com/pay/AddictionRecoverySolutions/scs-v1-6d8f2a4b729e4954a1e4fa43827af002d827af11ea8e4eecada51fc01961f8193b8954d8330544b8ab0fbf78d0f24886?locale=EN_US">
+      NON-DOT Drug Test ($100)
+    </button>
+
+    <button class="send-button"
+      onclick="toggleSelect(this)"
+      data-title="RTD Drug Test ($150)"
+      data-link="https://connect.intuit.com/pay/AddictionRecoverySolutions/scs-v1-c84c49e0425b46d19481c8f1652d2736b9a913ddae9a42579fee7d9ca674fce4647dc53252e8443b91d99949acaf9615?locale=EN_US">
+      RTD Drug Test ($150)
+    </button>
+
+    <button class="send-button"
+      onclick="toggleSelect(this)"
+      data-title="RTD Breath Alcohol Test ($150)"
+      data-link="https://connect.intuit.com/pay/AddictionRecoverySolutions/scs-v1-42530e7fa56340c2aed75c997298e22e5d04f98bc5e140df83b4f1e13ec438e33fad23c7deea415eb61b5eff6fad2a7c?locale=EN_US">
+      RTD Breath Alcohol Test ($150)
+    </button>
+
+    <button class="send-button"
+      onclick="toggleSelect(this)"
+      data-title="SAP Intake Information"
+      data-link="https://addictionrecoverysolutions.na3.documents.adobe.com/public/esignWidget?wid=CBFCIBAA3AAABLblqZhABQinuoy7fYkWFO0LWrnF-D_PMP7BTQ88FXfVW1jgG4jgoFAaPCxOpIKW_tmW_qhg*">
+      SAP Intake Information
+    </button>
+
+    <button class="send-button"
+      onclick="toggleSelect(this)"
+      data-title="SAP Release of Information"
+      data-link="https://addictionrecoverysolutions.na3.documents.adobe.com/public/esignWidget?wid=CBFCIBAA3AAABLblqZhAKUBWQ5se1ynRPCXnLN94refn45tow_IC78F_yQOepO54Rp-YDd4mOeTH1NFE1N1A*">
+      SAP Release of Information
+    </button>
+
+    <button class="send-button"
+      onclick="toggleSelect(this)"
+      data-title="SAP Statement of Understanding"
+      data-link="https://addictionrecoverysolutions.na3.documents.adobe.com/public/esignWidget?wid=CBFCIBAA3AAABLblqZhAWN5sdCD7-1te6Ji7zS1iQ75bePoy6tsZf8_CCvKJxD4POU8Jlb-ojYVkyQAhpXS0*">
+      SAP Statement of Understanding
+    </button>
+
+    <button class="send-button"
+      onclick="toggleSelect(this)"
+      data-title="Screening Intake Form"
+      data-link="https://addictionrecoverysolutions.na3.documents.adobe.com/public/esignWidget?wid=CBFCIBAA3AAABLblqZhBIYuZSHaXgAhrJhQyd_2c4Uhziluf_YHf4sXx1eS9Sj3WRE79BBRNWNloNKv1D9HM*">
+      Screening Intake Form
+    </button>
+
+  
+
+    <button class="send-button"
+      onclick="toggleSelect(this)"
       data-title="Designate SAP Guide"
       data-link="https://clearinghouse.fmcsa.dot.gov/Resource/Index/Designate-SAP">
       Designate SAP Guide
     </button>
 
-    <button class="send-button" onclick="toggleSelect(this)"
+    <button class="send-button"
+      onclick="toggleSelect(this)"
       data-title="RTD Infographic"
       data-link="https://clearinghouse.fmcsa.dot.gov/Resource/Index/RTD-Infographic">
       RTD Infographic
     </button>
 
+    <!-- Step 5 Instructions (custom body) -->
+    <button class="send-button"
+      onclick="toggleSelect(this)"
+      data-title="Clearinghouse Step 5 Setup Instructions"
+      data-link="https://clearinghouse.fmcsa.dot.gov/Resource/Index/Registration-Instructions-Employer-without-Portal"
+      data-body="Clearinghouse Setup for Owner-Operators (Step 5)
+
+I need the follow up report without the testing plan from your SAP stating if you need a drug test, alcohol test, or both. Please send to my email.
+
+Info@longviewscreeningsolutions.org
+
+1. Use a New Email:
+Start with a new email not used in the Clearinghouse before.
+
+2. Register as Employer & Driver:
+Go to the Clearinghouse and register.
+Select Employer, then check Yes when asked if you’re also a driver.
+
+3. Company Name:
+Enter your first and last name as your company name (e.g., John Doe).
+
+4. TPA Selection:
+Designate Longview Screening Solutions as your Third-Party Administrator.
+
+5. Finish Setup:
+Complete the steps and confirm your roles and TPA are listed correctly.">
+      Clearinghouse Step 5 Setup Instructions
+    </button>
   </div>
 
   <script>
     function updateCount() {
-      document.getElementById("selectedCount").textContent =
-        `Selected: ${document.querySelectorAll(".send-button.selected").length}`;
+      const selected = document.querySelectorAll(".send-button.selected").length;
+      document.getElementById("selectedCount").textContent = `Selected: ${selected}`;
     }
 
-    function toggleSelect(btn) {
-      btn.classList.toggle("selected");
+    function toggleSelect(button) {
+      button.classList.toggle("selected");
       updateCount();
     }
 
     function clearSelection() {
-      document.querySelectorAll(".send-button.selected")
-        .forEach(b => b.classList.remove("selected"));
+      document.querySelectorAll(".send-button.selected").forEach(btn => btn.classList.remove("selected"));
       updateCount();
     }
 
     function buildCombinedMessage() {
-      const selected = document.querySelectorAll(".send-button.selected");
-      if (!selected.length) return null;
+      const selectedButtons = Array.from(document.querySelectorAll(".send-button.selected"));
+      if (selectedButtons.length === 0) return null;
 
-      let lines = ["Here are the requested links/info:", ""];
+      const lines = [];
+      lines.push("Here are the requested links/info:");
+      lines.push("");
 
-      selected.forEach(btn => {
-        const title = btn.dataset.title || "";
-        const body = btn.dataset.body || "";
-        const link = btn.dataset.link || "";
+      selectedButtons.forEach((btn, idx) => {
+        const title = btn.getAttribute("data-title") || `Item ${idx + 1}`;
+        const link = btn.getAttribute("data-link") || "";
+        const customBody = btn.getAttribute("data-body"); // optional
 
         lines.push(`— ${title}`);
-        if (body) lines.push(body);
-        if (link) lines.push(`Link: ${link}`);
-        lines.push("");
+        if (customBody && customBody.trim().length > 0) {
+          lines.push(customBody.trim());
+          lines.push("");
+          lines.push(`Link: ${link}`);
+        } else {
+          lines.push(link);
+        }
+        lines.push(""); // blank line between items
       });
 
       return {
-        subject: `Links (${selected.length})`,
+        subject: `Links (${selectedButtons.length})`,
         body: lines.join("\n")
       };
     }
 
     function sendSelected() {
       const recipient = document.getElementById("recipient").value.trim();
-      if (!recipient) return alert("Enter an email or phone number.");
+      if (!recipient) {
+        alert("Please enter an email or phone number.");
+        return;
+      }
 
       const payload = buildCombinedMessage();
-      if (!payload) return alert("Select at least one item.");
+      if (!payload) {
+        alert("Select at least one item first.");
+        return;
+      }
 
+      // Basic routing: email if it contains "@", otherwise SMS
       if (recipient.includes("@")) {
-        window.open(`mailto:${recipient}?subject=${encodeURIComponent(payload.subject)}&body=${encodeURIComponent(payload.body)}`);
+        const mailto = `mailto:${recipient}?subject=${encodeURIComponent(payload.subject)}&body=${encodeURIComponent(payload.body)}`;
+        window.open(mailto);
       } else {
-        window.open(`sms:${recipient}?body=${encodeURIComponent(payload.body)}`);
+        // SMS (note: desktop browsers may not support sms: well)
+        const sms = `sms:${recipient}?body=${encodeURIComponent(payload.body)}`;
+        window.open(sms);
       }
     }
 
+    // init
     updateCount();
   </script>
-
 </body>
 </html>
